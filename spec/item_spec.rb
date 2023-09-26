@@ -37,8 +37,18 @@ RSpec.describe Item do
     it 'has a highest bid' do
       @item1.add_bid(@attendee1, 20)
       @item1.add_bid(@attendee2, 22)
-      
+
       expect(@item1.current_high_bid).to eq(22)
+    end
+  end
+
+  describe '#close_bidding' do
+    it 'closed' do
+      @item1.add_bid(@attendee1, 20)
+
+      @item1.close_bidding
+
+      expect(@item1.add_bid(@attendee2, 22)).to eq("This bidding is closed")
     end
   end
 end

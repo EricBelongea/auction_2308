@@ -14,13 +14,11 @@ class Auction
   end
 
   def unpopular_item
-    unpopular = []
-    @items.each do |item, bid|
+    unpopular = @items.flat_map do |item, bid|
       if item.bids == {}
-        unpopular << item
+        item
       end
-    end
-    unpopular
+    end.compact
   end
   
   def potential_revenue
@@ -34,14 +32,12 @@ class Auction
   end
 
   def bidders
-    bidders = []
-    @items.flat_map do |item|
+    bidders = @items.flat_map do |item|
       list = item.bids.keys
-      list.each do |index|
-        bidders << index.name
+      list.flat_map do |index|
+        index.name
       end
-    end
-    bidders.uniq
+    end.uniq
   end
 
   def bidder_info
