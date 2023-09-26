@@ -32,4 +32,28 @@ class Auction
     end
     revenue
   end
+
+  def bidders
+    bidders = []
+    @items.flat_map do |item|
+      list = item.bids.keys
+      list.each do |index|
+        bidders << index.name
+      end
+    end
+    bidders.uniq
+  end
+
+  def bidder_info
+    bidder_info = {}
+
+    @items.each do |item|
+      item.bids.each do |bidder, bid|
+        bidder_info[bidder] ||= { budget: 0, items: []}
+        bidder_info[bidder][:budget] = bidder.budget
+        bidder_info[bidder][:items] << item
+      end
+    end
+    bidder_info
+  end
 end
