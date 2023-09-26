@@ -19,6 +19,25 @@ class Item
     high_roller = @bids.max_by { |item, bids| bids }.last
   end
 
+  # def sold_to
+  #   winner = @bids.max_by { |item, bids| bids }.first
+  # end
+
+  def sold_to
+    sorted_bids = @bids.sort_by { |attendee, bid| -bid }
+    
+    sorted_bids.each do |attendee, bid|
+      if bid < attendee.budget
+        attendee.budget -= bid
+        return attendee 
+      end
+    end
+    nil
+  end
+  
+  
+  
+
   def close_bidding
     @close_bidding = true
   end

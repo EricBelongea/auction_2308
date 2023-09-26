@@ -52,4 +52,20 @@ class Auction
     end
     bidder_info
   end
+
+  def close_auction
+    sold_items ={}
+
+    @items.each do |item|
+      # require 'pry'; binding.pry
+      if item.bids != {}
+        sold_items[item] = item.sold_to
+      elsif item.sold_to == nil
+        ## return "Not Sold"
+        sold_items[item] = "Not Sold"
+      end
+      # require 'pry'; binding.pry
+    end
+    sold_items
+  end
 end

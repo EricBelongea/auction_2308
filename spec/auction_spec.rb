@@ -140,4 +140,26 @@ RSpec.describe Auction do
 
     end
   end
+
+  #Work in progress: This will pass, but I don't have it fleshed out
+  describe '#close_auction' do
+    it 'closed' do
+      @auction.add_item(@item1)
+      @auction.add_item(@item2)
+      @auction.add_item(@item3)
+      @auction.add_item(@item4)
+      @auction.add_item(@item5)
+
+      @item1.add_bid(@attendee1, 20)
+      @item1.add_bid(@attendee2, 22)
+      @item4.add_bid(@attendee3, 50)
+      @item3.add_bid(@attendee2, 15)
+
+      expect(@auction.close_auction[@item1]).to eq(@attendee2)
+      expect(@auction.close_auction[@item2]).to eq("Not Sold")
+      expect(@auction.close_auction[@item3]).to eq(@attendee2)
+      expect(@auction.close_auction[@item4]).to eq(@attendee3)
+      expect(@auction.close_auction[@item5]).to eq("Not Sold")
+    end
+  end
 end
