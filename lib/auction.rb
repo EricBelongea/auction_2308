@@ -60,8 +60,7 @@ class Auction
       # require 'pry'; binding.pry
       if item.bids != {}
         sold_items[item] = item.sold_to
-      elsif item.sold_to == nil
-        ## return "Not Sold"
+      else #elsif item.sold_to == nil ## return "Not"
         sold_items[item] = "Not Sold"
       end
       # require 'pry'; binding.pry

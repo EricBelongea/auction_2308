@@ -141,7 +141,7 @@ RSpec.describe Auction do
     end
   end
 
-  #Work in progress: This will pass, but I don't have it fleshed out
+  #Work in progress: This will pass, but I don't have it fleshed out.
   describe '#close_auction' do
     it 'closed' do
       @auction.add_item(@item1)
