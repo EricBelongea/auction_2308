@@ -11,6 +11,6 @@ class Item
   end
 
   def current_high_bid
-    high_roller = @bids.max_by { |item, bid| bid }.last
+    high_roller = @bids.max_by { |item, bids| bids }.last
   end
 end
